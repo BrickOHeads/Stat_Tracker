@@ -92,6 +92,17 @@ router.put('/stats/:activity_id', (req, res) =>{
    })
 });
 
+router.delete('/stats/:activity_id', (req, res) =>{
+  Stats.findOneAndRemove({
+         activity: req.body.activity,
+         reps: req.body.reps,
+  }).then(newStat =>{
+     res.status(201).json(newStat);
+   })
+   .catch(x=>{
+     res.send("wrongggg on 3rd catch", x);
+   })
+});
 
 
 module.exports = router;
